@@ -1,4 +1,4 @@
-package edu.austral.ingsis;
+package edu.austral.ingsis.clifford;
 
 import java.util.List;
 
