@@ -5,18 +5,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Map;
+
+import edu.austral.ingsis.clifford.FileSystemRunner;
+import edu.austral.ingsis.clifford.Runner;
 import org.junit.jupiter.api.Test;
 
 public class FileSystemTests {
 
-  private final FileSystemRunner runner = commands -> List.of();
+  private final FileSystemRunner runner = new Runner();
 
-  private void executeTest(List<Map.Entry<String, String>> commandsAndResults) {
-    final List<String> commands = commandsAndResults.stream().map(Map.Entry::getKey).toList();
-    final List<String> expectedResult =
-        commandsAndResults.stream().map(Map.Entry::getValue).toList();
-
-    final List<String> actualResult = runner.executeCommands(commands);
+  private void executeTest(List<Map.Entry<String,String>> cmdsAndResults) {
+    List<String> commands = cmdsAndResults.stream().map(Map.Entry::getKey).toList();
+    List<String> expectedResult = cmdsAndResults.stream().map(Map.Entry::getValue).toList();
+    List<String> actualResult = runner.executeCommands(commands);
 
     assertEquals(expectedResult, actualResult);
   }
@@ -58,7 +59,7 @@ public class FileSystemTests {
             entry("cd emily", "moved to directory 'emily'"),
             entry("touch elizabeth.txt", "'elizabeth.txt' file created"),
             entry("mkdir t-bone", "'t-bone' directory created"),
-            entry("ls", "t-bone elizabeth.txt"),
+            entry("ls", "elizabeth.txt t-bone"),
             entry("rm t-bone", "cannot remove 't-bone', is a directory"),
             entry("rm --recursive t-bone", "'t-bone' removed"),
             entry("ls", "elizabeth.txt"),

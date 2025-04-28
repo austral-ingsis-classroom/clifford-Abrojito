@@ -26,7 +26,14 @@ public final class File implements Node {
         return "file";
     }
 
+    @Override
     public Directory getParent() {
         return parent;
     }
+
+    @Override
+    public int compareTo(Node other) {
+        return this.getName().compareTo(other.getName());
+    }
+
 }

@@ -13,4 +13,5 @@ public interface Node extends Comparable<Node> {
     default String getFullPath() {
         return (getPath().equals("/") ? "" : getPath()) + "/" + getName();
     }
+    Directory getParent();
 }
