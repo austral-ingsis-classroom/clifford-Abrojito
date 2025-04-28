@@ -1,17 +1,20 @@
 package edu.austral.ingsis.clifford;
 
 public interface Node extends Comparable<Node> {
-    String getName();
-    String getPath();
-    String getType();
+  String getName();
 
-    @Override
-    default int compareTo(Node other) {
-        return this.getName().compareTo(other.getName());
-    }
+  String getPath();
 
-    default String getFullPath() {
-        return (getPath().equals("/") ? "" : getPath()) + "/" + getName();
-    }
-    Directory getParent();
+  String getType();
+
+  @Override
+  default int compareTo(Node other) {
+    return this.getName().compareTo(other.getName());
+  }
+
+  default String getFullPath() {
+    return (getPath().equals("/") ? "" : getPath()) + "/" + getName();
+  }
+
+  Directory getParent();
 }

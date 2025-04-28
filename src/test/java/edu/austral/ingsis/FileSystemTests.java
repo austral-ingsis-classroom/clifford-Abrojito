@@ -3,18 +3,17 @@ package edu.austral.ingsis;
 import static java.util.Map.entry;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
-import java.util.Map;
-
 import edu.austral.ingsis.clifford.FileSystemRunner;
 import edu.austral.ingsis.clifford.Runner;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 public class FileSystemTests {
 
   private final FileSystemRunner runner = new Runner();
 
-  private void executeTest(List<Map.Entry<String,String>> cmdsAndResults) {
+  private void executeTest(List<Map.Entry<String, String>> cmdsAndResults) {
     List<String> commands = cmdsAndResults.stream().map(Map.Entry::getKey).toList();
     List<String> expectedResult = cmdsAndResults.stream().map(Map.Entry::getValue).toList();
     List<String> actualResult = runner.executeCommands(commands);
